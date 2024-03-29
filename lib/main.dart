@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quiz UI Flutter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -31,6 +33,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int idx = 0;
+  void onItemTap(int index) {
+    setState(() {
+      idx = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,11 +101,415 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   //jaawaban no 2
-  Widget soalNo2() {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+  Widget soalNo2() 
+  {
+    // jika menunya banyak, memakai scrollview
+    List<Map> data1 = 
+    [
+      {"icon": Icons.storefront, "text": "Official Store", "color": Colors.black},
+      {"icon": Icons.local_fire_department, "text": "Hot Deal", "color": const Color.fromARGB(255, 225, 80, 65)},
+      {"icon": Icons.checkroom, "text": "Fashion", "color": Colors.black},
+      {"icon": Icons.face_retouching_natural, "text": "Kosmetik", "color": Colors.black},
+    ];
+
+    List<Image> carouselItems = 
+    [
+	    Image.network('https://picsum.photos/id/10/500/200'),
+	    Image.network('https://picsum.photos/id/11/500/200'),
+	    Image.network('https://picsum.photos/id/22/500/200'),
+    ];
+
+
+    return Scaffold
+    (
+      appBar: AppBar
+      (
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: SingleChildScrollView
+      (
+        child: Column
+        (
+          children: 
+          [
+            Container
+            (
+              height: 200,
+              decoration: const BoxDecoration
+              (
+                image: DecorationImage
+                (
+                  image: NetworkImage('https://fastly.picsum.photos/id/490/300/200.jpg?hmac=qP4A6IEEMybCfSE3tHSANZ1gfuNT74WOY6KEe9sVMXE'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column
+              (
+                children: 
+                [
+                  Padding
+                  (
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row
+                    (
+                      children: 
+                      [
+                        Expanded
+                        (
+                          flex: 3,
+                          child: TextField
+                          (
+                            decoration: InputDecoration
+                            (
+                              prefixIcon: const Icon(Icons.search),
+                              hintText: "Cari barang di Tokoo",
+                              border: OutlineInputBorder
+                              (
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(12),
+                              ), 
+                              filled: true,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Row
+                        (
+                          children: 
+                          [
+                            Container
+                            (
+                              width: 40,
+                              padding: const EdgeInsets.all(8),
+                              child: const Icon
+                              (
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Container
+                            (
+                              width: 40,
+                              padding: const EdgeInsets.all(8),
+                              child: const Icon
+                              (
+                                Icons.notifications,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Container
+                            (
+                              width: 40,
+                              padding: const EdgeInsets.all(8),
+                              child: const Icon
+                              (
+                                Icons.chat,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding
+            (
+              padding: const EdgeInsets.all(10.0),
+              child: Column
+              (
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: 
+                [
+                  const Text
+                  (
+                    "Halo, Budi!",
+                    style: TextStyle
+                    (
+                      fontSize: 20
+                    ),
+                  ),
+                  Padding
+                  (
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column
+                    (
+                      children: 
+                      [
+                        Container
+                        (
+                          // bisa diaktifkan jika ingin containernya tidak stretch
+                          // width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration
+                          (
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(),
+                            color: const Color.fromARGB(255, 235, 230, 235)
+                          ),
+                          child: Padding
+                          (
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
+                            child: Row
+                            (
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: 
+                              [
+                                const SizedBox(height: 0), // agar di tengah
+                                Row
+                                (
+                                  children:  
+                                  [
+                                    Container
+                                    (
+                                      padding: const EdgeInsets.all(8),
+                                      child: const Icon
+                                      (
+                                        Icons.wallet,
+                                        color: Color.fromARGB(255, 115, 85, 70),
+                                        // size: 20,
+                                      ),
+                                    ),
+                                    const Text
+                                    (
+                                      "Store\nCredit\nRp. 0",
+                                      style: TextStyle
+                                      (
+                                        fontSize: 12
+                                      ),
+                                      textAlign: TextAlign.center
+                                    ),
+                                  ],
+                                ),
+                                Container
+                                (
+                                  width: 0.5,
+                                  height: 40,
+                                  color: Colors.black,
+                                ),
+                                Row
+                                (
+                                  children: 
+                                  [
+                                    Container
+                                    (
+                                      padding: const EdgeInsets.all(8),
+                                      child: const Icon
+                                      (
+                                        Icons.loyalty_outlined,
+                                        color: Color.fromARGB(255, 115, 85, 70),
+                                        // size: 20,
+                                      ),
+                                    ),
+                                    const Text
+                                    (
+                                      "Reward\nPoint\n100 Point",
+                                      style: TextStyle
+                                      (
+                                        fontSize: 12
+                                      ),
+                                      textAlign: TextAlign.center
+                                    ),
+                                  ],
+                                ),
+                                Container
+                                (
+                                  width: 0.5,
+                                  height: 40,
+                                  color: Colors.black,
+                                ),
+                                Row
+                                (
+                                  children: 
+                                  [
+                                    Container
+                                    (
+                                      padding: const EdgeInsets.all(8),
+                                      child: const Icon
+                                      (
+                                        Icons.confirmation_num,
+                                        color: Color.fromARGB(255, 115, 85, 70),
+                                        // size: 20,
+                                      ),
+                                    ),
+                                    const Text
+                                    (
+                                      "Kupon\nSaya\n11 Kupon",
+                                      style: TextStyle
+                                      (
+                                        fontSize: 12
+                                      ),
+                                      textAlign: TextAlign.center
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 0), // agar di tengah
+                              ],
+                            ),
+                          ),
+                        ),
+                        SingleChildScrollView
+                        (
+                          child: Container
+                          (
+                            // width: data1.length * 100,
+                            // decoration: BoxDecoration
+                            // (
+                            //   borderRadius: BorderRadius.circular(6),
+                            //   border: Border.all(),
+                            //   color: const Color.fromARGB(255, 235, 230, 235)
+                            // ),
+                            height: 100,
+                            child: Builder
+                            (
+                              builder: (context)
+                              {
+                                return ListView.builder
+                                (
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: data1.length,
+                                  itemBuilder: (context, index)
+                                  {
+                                    var item = data1[index];
+                                    return Container
+                                    (
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column
+                                      (
+                                        children: 
+                                        [
+                                          Container
+                                          (
+                                            padding: const EdgeInsets.all(8),
+                                            child: Icon
+                                            (
+                                              item["icon"],
+                                              size: 40,
+                                              color: item["color"],
+                                            ),
+                                          ),
+                                          Text
+                                          (
+                                            item["text"],
+                                          ),
+                                        ],
+                                      )
+                                    );
+                                  }
+                                );
+                              }
+                            )
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  CarouselSlider
+                  (
+                    items: carouselItems, 
+                    options: CarouselOptions
+                    (
+                      height: 150,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.9,
+                      aspectRatio: 2.0,
+                      initialPage: 2,
+                    )
+                  )
+                ],
+              ),
+            )
+          ],
         ),
-        body: const Text("ini jawaban no 2"));
+      ),
+      bottomNavigationBar: BottomNavigationBar
+      (
+        currentIndex: idx,
+        showUnselectedLabels: true,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: const Color.fromARGB(255, 70, 65, 75),
+        onTap: onItemTap,
+        items: <BottomNavigationBarItem>
+        [
+          BottomNavigationBarItem
+          (
+            icon: Container
+            (
+              width: 50,
+              decoration: BoxDecoration
+              (
+                color: const Color.fromARGB(255, 245, 195, 65),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.home),
+            ), 
+            label: 'Beranda',
+            // activeIcon: const Icon(Icons.home, color: Colors.black),
+          ),
+          BottomNavigationBarItem
+          (
+            icon: const Icon(Icons.category),
+            label: 'Kategori',
+            activeIcon: Container
+            (
+              width: 50,
+              decoration: BoxDecoration
+              (
+                color: const Color.fromARGB(255, 245, 195, 65),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.category),
+            ),
+          ),
+          BottomNavigationBarItem
+          (
+            icon: const Icon(Icons.qr_code), 
+            label: 'Scan',
+            activeIcon: Container
+            (
+              width: 50,
+              decoration: BoxDecoration
+              (
+                color: const Color.fromARGB(255, 245, 195, 65),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.qr_code),
+            ),
+          ),
+          BottomNavigationBarItem
+          (
+            icon: const Icon(Icons.shopping_basket), 
+            label: 'List Belanja',
+            activeIcon: Container
+            (
+              width: 50,
+              decoration: BoxDecoration
+              (
+                color: const Color.fromARGB(255, 245, 195, 65),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.shopping_basket),
+            ),
+          ),
+          BottomNavigationBarItem
+          (
+            icon: const Icon(Icons.account_circle), 
+            label: 'Akun',
+            activeIcon: Container
+            (
+              width: 50,
+              decoration: BoxDecoration
+              (
+                color: const Color.fromARGB(255, 245, 195, 65),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.account_circle),
+            ),
+          ),
+        ]
+      ),
+    );
   }
 }
